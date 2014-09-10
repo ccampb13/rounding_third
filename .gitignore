@@ -15,6 +15,5 @@
 /log/*.log
 /tmp
 
-
-/config/database.yml
 /config/oauth.yml
+/config/database.yml
