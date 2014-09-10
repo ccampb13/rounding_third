@@ -13,6 +13,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'rails', '4.1.5'
 gem 'sass-rails', '~> 4.0.3'
+gem 'simple_form'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'turbolinks'
