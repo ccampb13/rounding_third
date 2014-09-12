@@ -3,16 +3,26 @@
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %title= content_for?(:title) ? yield(:title) : "foundation-rails"
-    = stylesheet_link_tag    "application"
+    %title= content_for?(:title) ? yield(:title) : "RoundingThird"
+    = stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
   %body
-    - if notice.present?
-      .alert-box.success{ "data-alert" => "" }
-        = notice
-    - if alert.present?
-      .alert-box.alert{ "data-alert" => "" }
-        = alert
-    = yield
+    %ul#devise_navigation
+      %h1 Rounding Third
+      - if user_signed_in?
+        %li
+          You are signed in as
+          = link_to(current_user.email, main_app.user_path(current_user))
+        %li= link_to('sign out', destroy_user_session_path, method: :delete)
+      - else
+        %li= link_to("sign in", new_user_session_path)
+        %li= link_to("sign up", new_user_registration_path)
+      - if notice.present?
+        .alert-box.success{ "data-alert" => "" }
+          = notice
+      - if alert.present?
+        .alert-box.alert{ "data-alert" => "" }
+          = alert
+      = yield
     = javascript_include_tag "application"

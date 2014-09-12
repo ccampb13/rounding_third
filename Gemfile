@@ -5,7 +5,9 @@ ruby '2.1.1'
 source 'https://rubygems.org'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
+gem 'faraday'
 gem 'foundation-rails'
+gem 'geocoder'
 gem 'haml'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
@@ -26,6 +28,9 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'database_cleaner'
+  gem 'fabrication'
+  gem 'shoulda-matchers', require: false
 end
 
 group :production do

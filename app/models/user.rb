@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
 
   has_many :authorizations
 
+  validates_presence_of :email
+  validates_presence_of :password, on: :create
+  validates_uniqueness_of :email
+
   def facebook_token
     @facebook_token ||= self.authorizations.get_facebook_token_for_user(self)
   end
