@@ -1,0 +1,55 @@
+@import 'foundation/components/grid';
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+html {
+  text-align: center;
+}
+
+body {
+  @include grid-row();
+}
+
+
+ul#devise_navigation li {
+  float:right;
+  display: inline;
+  margin: 10px;
+}
+
+header li {
+  display:inline;
+  margin: 3px;
+  a {
+    font-size: 30px;
+  }
+}
+
+.ferrell {
+  height: 600px;
+  width: 600px;
+}
+
+footer p{
+  margin: 5px;
+}
+
+
+ul#devise_navigation, header, #content, footer {
+
+  @include grid-row();
+
+  $left-column-size: 6;
+  $right-column-size: 12 - $left-column-size;
+  .left-column {
+    @include grid-column($left-column-size);
+  }
+  .right-column {
+    @include grid-column($right-column-size);
+  }
+}
