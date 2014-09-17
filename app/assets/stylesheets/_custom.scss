@@ -53,3 +53,8 @@ ul#devise_navigation, header, #content, footer {
     @include grid-column($right-column-size);
   }
 }
+
+ul.games li{
+  display: inline;
+  
+}

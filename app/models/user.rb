@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :omniauthable
 
   has_many :authorizations
+  has_many :trips
 
   validates_presence_of :email
   validates_presence_of :password, on: :create
@@ -44,8 +45,7 @@ class User < ActiveRecord::Base
       end
 
       unless user
-        user = User.create(first_name: auth.extra.raw_info.first_name,
-                           last_name: auth.extra.raw_info.last_name,
+        user = User.create(
                            email: auth.info.email,
                            password: Devise.friendly_token[0,20])
 

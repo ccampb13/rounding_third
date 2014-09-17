@@ -2,6 +2,7 @@ class Trip < ActiveRecord::Base
   belongs_to :user
   geocoded_by :city
   before_validation :geocode, unless: :geocoded?
+  validates_presence_of :start_date, :end_date, :city
 
   def coordinates
     [latitude, longitude]

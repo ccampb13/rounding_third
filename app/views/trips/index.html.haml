@@ -1,0 +1,10 @@
+.left_column
+  - if @trips.empty?
+    %p You don't have any trips yet!
+    = link_to "Create a new Trip", new_trip_path
+  - else
+    %ul
+      - @trips.each do |trip|
+        %li
+          = link_to trip_path(trip) do
+            = render trip

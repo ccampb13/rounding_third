@@ -1,0 +1,10 @@
+%h1 edit
+= simple_form_for @trip do |f|
+  .form-inputs
+    = f.input :start_date, :as => :string
+    = f.input :end_date, :as => :string
+    = f.input :city, :as => :string, placeholder: 'Baltimore, MD'
+  .form-actions
+    = f.button :submit, "Update"
+
+= button_to("Delete This Trip", @trip, method: :delete, class: "button tiny alert", id: "trip_delete" )
