@@ -21,7 +21,8 @@ class TripsController < ApplicationController
   end
 
   def show
-    @games = Game.all
+    @trip = current_user.trips.find(params[:id])
+    @games = Game.for_trip(@trip, radius = 200)
   end
 
    def edit

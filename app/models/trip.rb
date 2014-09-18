@@ -8,7 +8,7 @@ class Trip < ActiveRecord::Base
     [latitude, longitude]
   end
 
-  def games(radius = 50)
+  def games(radius = 200)
     @games ||= {}
     @games[radius] ||= Game.for_trip(self, radius)
   end

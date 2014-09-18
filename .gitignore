@@ -17,3 +17,4 @@
 
 /config/oauth.yml
 /config/database.yml
+/lib/mlb/client.rb
