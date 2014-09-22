@@ -21,12 +21,12 @@
       %section
         .left-column
           %h1.title= link_to "rounding third", "/"
+          %p.tagline where baseball travel plans are made
         .right-column
           %nav#pages
             %ul
               %li= link_to "Trips", new_trip_path
-              %li= link_to "Stadiums", "#"
-            %p.tagline where baseball travel plans are made
+              %li= link_to "Stadiums", venues_path  
     #content
       - if notice.present?
         .alert-box.success{ "data-alert" => "" }

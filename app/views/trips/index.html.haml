@@ -3,7 +3,7 @@
     %p You don't have any trips yet!
     = link_to "Create a new Trip", new_trip_path
   - else
-    %ul
+    %ul.trips
       - @trips.each do |trip|
         %li
           = link_to trip_path(trip) do

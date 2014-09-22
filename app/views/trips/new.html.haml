@@ -1,3 +1,5 @@
-%h1 New Trip
-= render 'form'
-%p= link_to 'See all your saved trips', trips_path
+.left-column#trip
+  = render 'form'
+  %p= link_to 'See all your saved trips', trips_path
+.right-column
+  = image_tag 'the_babe.jpg', class: "babe"

@@ -1,0 +1,5 @@
+= image_tag 'wrigley.png', class: "wrigley"
+%ul.venues
+  - @venues.each do |venues|
+    %li
+      = venues.name

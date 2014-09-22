@@ -30,6 +30,10 @@ header li {
   }
 }
 
+nav#pages {
+  margin: 30px;
+}
+
 .ferrell {
   height: 600px;
   width: 600px;
@@ -37,6 +41,12 @@ header li {
 
 footer p{
   margin: 5px;
+  display: inline;
+}
+
+.field {
+  width: 90%;
+  height: 20%;
 }
 
 
@@ -56,5 +66,18 @@ ul#devise_navigation, header, #content, footer {
 
 ul.games li{
   display: inline;
-  
+}
+
+ul.trips h5 {
+  display: inline;
+}
+
+.left-column#trip {
+  margin-top: 80px;
+  border: 2px solid black;
+  border-radius: 10%;
+}
+
+.babe {
+  margin-top: -60px;
 }
