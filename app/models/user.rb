@@ -3,55 +3,27 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable
+         :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :authorizations
+  # has_many :authorizations
   has_many :trips
 
   validates_presence_of :email
   validates_presence_of :password, on: :create
   validates_uniqueness_of :email
 
-  def facebook_token
-    @facebook_token ||= self.authorizations.get_facebook_token_for_user(self)
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
   end
 
-  def add_authorization_for_facebook(uid, auth_token)
-    add_authorization(:facebook, uid, auth_token)
-  end
-
-  def add_authorization(provider, uid, auth_token, auth_secret = nil)
-    self.authorizations.build(provider: provider, provided_id: uid, token: auth_token, secret: auth_secret)
-  end
-
-  class << self
-    def find_or_create_by_facebook_oauth(auth, signed_in_resource = nil)
-      authorization = Authorization.get_facebook_user(auth.uid)
-      user = authorization.try(:user)
-
-      if signed_in_resource
-        unless signed_in_resource == user
-          signed_in_resource.add_authorization_for_facebook(auth.uid, auth.credentials.try(:token))
-          signed_in_resource.save
-        end
-
-        return signed_in_resource
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
       end
-
-      unless user
-        if user = User.where(email: auth.info.email).first
-          user.add_authorization_for_facebook(auth.uid, auth.credentials.try(:token))
-        end
-      end
-
-      unless user
-        user = User.create(
-                           email: auth.info.email,
-                           password: Devise.friendly_token[0,20])
-
-        user.add_authorization_for_facebook(auth.uid, auth.credentials.try(:token))
-      end
-      user
     end
   end
 end
