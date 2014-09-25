@@ -13,10 +13,12 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-    end
+    user = User.where("(provider = ? and uid = ?) or email = ?", auth.provider, auth.uid, auth.info.email).first
+    user ||= User.create(provider: auth.provider,
+                        uid: auth.uid,
+                        email: auth.info.email,
+                        password: Devise.friendly_token[0,20])
+    user
   end
 
   def self.new_with_session(params, session)
