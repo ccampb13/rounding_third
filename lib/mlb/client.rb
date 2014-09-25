@@ -17,7 +17,7 @@ module MLB
        rankings = get :get_rankings_for_year, Date.today.year
        @teams = rankings['rankings']['league'].flat_map {|l| l['division'].flat_map {|d| d['team'] }}
      end
-     
+
      @teams
    end
 

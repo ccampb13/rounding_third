@@ -3,13 +3,17 @@ ruby '2.1.1'
 #ruby-gemset=rounding_third
 
 source 'https://rubygems.org'
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'chronic'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'faraday'
+gem 'figaro'
 gem 'foundation-rails'
 gem 'geocoder'
 gem 'haml'
 gem 'jbuilder', '~> 2.0'
+gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -23,6 +27,8 @@ gem 'uglifier', '>= 1.3.0'
 
 
 group :development, :test do
+  gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'rspec-rails'
 end
 

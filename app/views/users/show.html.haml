@@ -1,2 +1,14 @@
-%p= link_to 'Search for a new trip', new_trip_path
-%p= link_to 'See your saved trips', trips_path
+.left-column
+  - if @trips.empty?
+    %p You don't have any trips yet!
+    = link_to "Create a new Trip", new_trip_path
+  - else
+    %ul.trips
+      - @trips.each do |trip|
+        %li
+          = link_to trip_path(trip) do
+            = render trip
+  %p= link_to 'Search for a new trip', new_trip_path
+
+.right-column
+  = image_tag 'the_babe.jpg', class: "babe"

@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:new]
+
 
   def new
     @trip = Trip.new
@@ -10,10 +11,10 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = current_user.trips.create(trip_params)
+    @trip = current_user.trips.build(trip_params)
     if @trip.save
       flash.now[:notice] = "Your trip has been saved."
-      redirect_to trips_path
+      redirect_to edit_trip_path(@trip)
     else
       flash.now[:alert] = "Your trip could not be created."
       render 'new'
@@ -22,11 +23,12 @@ class TripsController < ApplicationController
 
   def show
     @trip = current_user.trips.find(params[:id])
-    @games = Game.for_trip(@trip, radius = 200)
+    @games = @trip.games.group_by { |game| game.first_pitch_at.to_date }
   end
 
    def edit
-    @trip = current_user.trips.find_by_id(params[:id])
+    @trip = current_user.trips.find(params[:id])
+    @potential_games = @trip.potential_games.group_by { |game| game.first_pitch_at.to_date }
     if @trip.nil?
       flash.notice = "The trip could not be found."
       redirect_to trip_path
@@ -54,6 +56,6 @@ class TripsController < ApplicationController
   private
 
     def trip_params
-      params.require(:trip).permit(:start_date, :end_date, :city, :name)
+      params.require(:trip).permit(:start_date, :end_date, :city, :name, :radius, game_ids: [])
     end
 end

@@ -16,7 +16,7 @@ feature "Users signs up and signs in up normal with email address and password" 
     fill_in "Password confirmation", with: "passwordA"
     click_button "Sign up"
     expect(page).to have_content "Welcome! You have signed up successfully."
-    expect(current_path).to eq('/users/1')
+    expect(current_path).to eq('/users/2')
     expect(page).not_to have_content "Sign Up"
     expect(page).not_to have_content "Sign In"
 

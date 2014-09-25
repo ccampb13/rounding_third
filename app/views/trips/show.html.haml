@@ -1,16 +1,11 @@
-%h1 Show Trip Page
-%ul.games
-  - @games.each do |game|
-    %li= game.first_pitch_at
-    %li= game.venue_name
-    %li= game.home_team_name
-    %li= game.away_team_name
-    %br
-
-
-
-
-
-%p= link_to 'Edit Trip', edit_trip_path
-%p= link_to 'See all your saved trips', trips_path
+%h3= @trip.name
+.left-column
+  - @games.each do |date, games|
+    %h4= date
+    - games.each do |game|
+      %div= game.pretty_print
+.right-column
+%p= link_to 'Edit Trip', edit_trip_path, class: 'button'
 = button_to("Delete This Trip", @trip, method: :delete, class: "button tiny alert", id: "trip_delete" )
+%p= link_to 'New Trip', new_trip_path
+%p= link_to 'See all your saved trips', trips_path

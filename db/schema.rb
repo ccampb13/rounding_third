@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140919155542) do
+ActiveRecord::Schema.define(version: 20140924221922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,16 @@ ActiveRecord::Schema.define(version: 20140919155542) do
     t.datetime "updated_at"
   end
 
+  create_table "trip_games", force: true do |t|
+    t.integer  "trip_id"
+    t.integer  "game_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "trip_games", ["game_id"], name: "index_trip_games_on_game_id", using: :btree
+  add_index "trip_games", ["trip_id"], name: "index_trip_games_on_trip_id", using: :btree
+
   create_table "trips", force: true do |t|
     t.date     "start_date"
     t.date     "end_date"
@@ -60,6 +70,7 @@ ActiveRecord::Schema.define(version: 20140919155542) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "radius"
   end
 
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
@@ -89,6 +100,7 @@ ActiveRecord::Schema.define(version: 20140919155542) do
     t.uuid     "external_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "market"
   end
 
 end

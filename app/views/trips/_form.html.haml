@@ -1,9 +1,10 @@
-%h2 Plan your trip today. 
+%h2 Plan your trip today.
 = simple_form_for @trip do |f|
   .form-inputs
-    = f.input :start_date, :as => :date
-    = f.input :end_date, :as => :date
+    = f.input :start_date, :as => :string, :input_html => { :class => 'datepicker'}
+    = f.input :end_date, :as => :string, :input_html => { :class => 'datepicker'}
     = f.input :city, :as => :string, placeholder: 'Baltimore, MD'
+    = f.input :radius, :collection => %w[100 200 400 750 1000 2000], prompt: 'Mile Radius'
     = f.input :name, :as => :string, placeholder: 'Name Your Trip'
   .form-actions
     = f.button :submit, "Search"

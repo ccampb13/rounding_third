@@ -4,7 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = '4677e1dc12ed45a4c4f5b72d7fe1fbc0cc973efb61fc7bc5c26bd95bf48644c9df45f6e44140cca28888c9a8d6b0ae1f8c632462270a7a497024e55b144adca0'
+  config.secret_key = '4677e1dc12ed45a4c4f5b72d7fe1fbc0cc973efb61fc7bc5c26bd95bf48644c9df45f6e44140cca28888c9a8d6b0ae1f8c632462270a7a497024e55b144adca0'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -232,7 +232,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :facebook, ENV["FACEBOOK_API_KEY"], ENV["FACEBOOK_API_SECRET"]
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -256,5 +256,5 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-  config.omniauth :facebook, OAuth::Facebook.app_id, OAuth::Facebook.secret, scope: 'email,offline_access'
+  # config.omniauth :facebook, OAuth::Facebook.app_id, OAuth::Facebook.secret, scope: 'email,offline_access'
 end

@@ -8,25 +8,10 @@
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
   %body
-    %ul#devise_navigation
-      - if user_signed_in?
-        %li
-          You are signed in as
-          = link_to(current_user.email, main_app.user_path(current_user))
-        %li= link_to('sign out', destroy_user_session_path, method: :delete)
-      - else
-        %li= link_to("sign in", new_user_session_path)
-        %li= link_to("sign up", new_user_registration_path)
+    %nav
     %header
-      %section
-        .left-column
-          %h1.title= link_to "rounding third", "/"
-          %p.tagline where baseball travel plans are made
-        .right-column
-          %nav#pages
-            %ul
-              %li= link_to "Trips", new_trip_path
-              %li= link_to "Stadiums", venues_path  
+      %h1.title= link_to "Rounding Third", "/"
+      %p.tagline where baseball travel plans are made
     #content
       - if notice.present?
         .alert-box.success{ "data-alert" => "" }
@@ -36,7 +21,15 @@
           = alert
       = yield
     %footer
-      %p= link_to "About", "#"
       %p= link_to "Blog", "http://roundingthird.tumblr.com/"
-      %p= link_to "illustration by 5.4.1871", "http://541871.com/"
+      %p= link_to "Illustrations by 5.4.1871", "http://541871.com/"
+      %ul#devise_navigation
+        - if user_signed_in?
+          %li
+            You are signed in as
+            = link_to(current_user.email, main_app.user_path(current_user))
+          %li= link_to('sign out', destroy_user_session_path, method: :delete)
+        - else
+          %li= link_to("sign in", new_user_session_path)
+          %li= link_to("sign up", new_user_registration_path)
     = javascript_include_tag "application"

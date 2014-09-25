@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Team, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'validations' do
+    it { should have_many :away_games}
+    it { should have_many :home_games}
+  end
 end

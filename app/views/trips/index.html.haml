@@ -1,4 +1,4 @@
-.left_column
+.left-column
   - if @trips.empty?
     %p You don't have any trips yet!
     = link_to "Create a new Trip", new_trip_path
@@ -8,3 +8,5 @@
         %li
           = link_to trip_path(trip) do
             = render trip
+.right-column
+  = image_tag 'the_babe.jpg', class: "babe"

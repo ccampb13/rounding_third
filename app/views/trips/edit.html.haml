@@ -1,10 +1,21 @@
-%h1 edit
 = simple_form_for @trip do |f|
   .form-inputs
-    = f.input :start_date, :as => :string
-    = f.input :end_date, :as => :string
-    = f.input :city, :as => :string, placeholder: 'Baltimore, MD'
+    .left-column
+      .panel
+        %h3 Refine Search
+        %p You can alter the search parameters for your trip at anytime!
+      = f.input :start_date, :as => :string, :input_html => { :class => 'datepicker'}
+      = f.input :end_date, :as => :string, :input_html => { :class => 'datepicker'}
+      = f.input :city, :as => :string, placeholder: 'Baltimore, MD'
+      = f.input :radius, :collection => %w[100 200 400 750 1000 2000], prompt: 'Select Mile Radius'
+      = f.input :name, :as => :string, placeholder: 'Name Your Trip'
+    .right-column
+      .panel
+        %h3 List of Potential Games
+        %p Check the games you would like to see and save to trip!
+      - @potential_games.each do |date, games|
+        %h4= date
+        = f.collection_check_boxes :game_ids, games, :id, :pretty_print, item_wrapper_tag: :div
   .form-actions
-    = f.button :submit, "Update"
-
+    = f.button :submit
 = button_to("Delete This Trip", @trip, method: :delete, class: "button tiny alert", id: "trip_delete" )
