@@ -1,9 +1,13 @@
 %h3= @trip.name
 .left-column
-  - @games.each do |date, games|
-    %h4= date
-    - games.each do |game|
-      %div= game.pretty_print
+  - if @games.empty?
+    %p This trip returns no games. Refine your search or confirm games for current search!
+    %p= link_to 'Edit Trip', edit_trip_path, class: 'button'
+  - else
+    - @games.each do |date, games|
+      %h4= date
+      - games.each do |game|
+        %div= game.pretty_print
 .right-column
 %p= link_to 'Edit Trip', edit_trip_path, class: 'button'
 = button_to("Delete This Trip", @trip, method: :delete, class: "button tiny alert", id: "trip_delete" )
