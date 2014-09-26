@@ -12151,6 +12151,7 @@ header li a {
 
 /* line 50, /Users/chadcampbell/Documents/Projects/rounding_third/app/assets/stylesheets/custom.scss */
 nav {
+  background-image: url(/assets/flags.jpg);
   background-repeat: repeat-y;
   margin-left: 50px;
   height: 15%;
