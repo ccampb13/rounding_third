@@ -48,7 +48,7 @@ header li {
 }
 
 nav {
-  // background-image: url(<%= asset_path 'flags.jpg' %>);
+  background-image: asset-url('flags.jpg');
   background-repeat: repeat-y;
   margin-left: 50px;
   height: 15%;
