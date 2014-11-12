@@ -35,7 +35,7 @@ class TripsController < ApplicationController
     end
   end
 
-   def update
+  def update
     @trip = current_user.trips.find(params[:id])
     if @trip.update_attributes(trip_params)
       flash.notice = "Trip was successfully updated!"
