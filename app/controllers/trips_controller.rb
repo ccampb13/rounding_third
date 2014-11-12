@@ -1,7 +1,6 @@
 class TripsController < ApplicationController
   before_action :authenticate_user!, except: [:new]
 
-
   def new
     @trip = Trip.new
   end
@@ -55,7 +54,7 @@ class TripsController < ApplicationController
 
   private
 
-    def trip_params
-      params.require(:trip).permit(:start_date, :end_date, :city, :name, :radius, game_ids: [])
-    end
+  def trip_params
+    params.require(:trip).permit(:start_date, :end_date, :city, :name, :radius, game_ids: [])
+  end
 end
